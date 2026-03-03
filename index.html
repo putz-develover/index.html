@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Play Sound</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #000000, #1a0000, #330000);
+      animation: bgMove 5s infinite alternate;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: left; }
+      100% { background-position: right; }
+    }
+
+    #startBtn {
+      font-size: 28px;
+      padding: 20px 50px;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow: 0 0 20px red;
+      transition: 0.3s;
+    }
+
+    #startBtn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 40px red;
+    }
+
+  </style>
+</head>
+<body>
+
+<button id="startBtn">TEKAN DISINI</button>
+
+<audio id="audio" loop>
+  <source src="https://www.soundjay.com/button/beep-07.wav" type="audio/wav">
+</audio>
+
+<script>
+  const btn = document.getElementById("startBtn");
+  const audio = document.getElementById("audio");
+
+  btn.addEventListener("click", function() {
+    audio.volume = 1.0;
+    audio.play();
+    btn.style.display = "none";
+  });
+</script>
+
+</body>
+</html>
