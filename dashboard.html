@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>PUTZ DASHBOARD</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    overflow:hidden;
+    font-family:Arial,sans-serif;
+    color:white;
+    text-align:center;
+}
+
+/* VIDEO BACKGROUND */
+#bg-video{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-1;
+    display:none;
+}
+
+/* OVERLAY KLIK */
+#overlay{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:26px;
+    cursor:pointer;
+    z-index:10;
+}
+
+/* WELCOME TEXT */
+#welcome{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:42px;
+    opacity:0;
+    transition:opacity 1s ease;
+    text-shadow:0 0 20px red;
+}
+</style>
+</head>
+<body>
+
+<div id="overlay">Klik Disini Untuk Memulai</div>
+
+<video id="bg-video" playsinline loop>
+    <source src="ssstik.io_@shizhii0_1772621148585.mp4" type="video/mp4">
+</video>
+
+<h1 id="welcome">WELCOME DI WEB PUTZ 🔥</h1>
+
+<script>
+// CEK LOGIN
+if(localStorage.getItem("login") !== "true"){
+    window.location.href = "index.html";
+}
+
+const overlay = document.getElementById("overlay");
+const video = document.getElementById("bg-video");
+const welcome = document.getElementById("welcome");
+
+overlay.addEventListener("click", () => {
+
+    overlay.style.display = "none";
+    video.style.display = "block";
+
+    // play video + audio
+    video.play().catch(()=>{});
+
+    // delay 1 detik lalu tampilkan welcome
+    setTimeout(()=>{
+        welcome.style.opacity = "1";
+
+        // 1 detik lagi hilangkan welcome
+        setTimeout(()=>{
+            welcome.style.opacity = "0";
+        },1000);
+
+    },1000);
+
+});
+</script>
+
+</body>
+</html>
