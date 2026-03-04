@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+
+<!-- LOCK ZOOM SEMUA HP -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>PUTZ Official</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Courier New', monospace;
+}
+
+html,body{
+    height:100%;
+    overflow:hidden;
+    background: radial-gradient(circle at center, #0f2027, #000000);
+}
+
+/* PUTZ pojok kanan dengan glitch */
+.putz{
+    position:absolute;
+    top:20px;
+    right:30px;
+    font-size:28px;
+    font-weight:bold;
+    color:#00f0ff;
+    text-shadow:
+        0 0 5px #00f0ff,
+        0 0 20px #00f0ff,
+        0 0 40px #00f0ff;
+    animation: glitch 2s infinite;
+}
+
+@keyframes glitch{
+    0%{transform:translate(0);}
+    20%{transform:translate(1px,-1px);}
+    40%{transform:translate(-1px,1px);}
+    60%{transform:translate(1px,1px);}
+    80%{transform:translate(-1px,-1px);}
+    100%{transform:translate(0);}
+}
+
+/* Center container */
+.center{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+/* Tombol keren */
+.enter-box{
+    position:relative;
+    padding:40px 60px;
+    border:3px solid #00f0ff;
+    color:#00f0ff;
+    font-size:32px;
+    text-align:center;
+    cursor:pointer;
+    overflow:hidden;
+    transition:0.4s;
+    letter-spacing:3px;
+}
+
+/* Glow bergerak */
+.enter-box::before{
+    content:"";
+    position:absolute;
+    top:-100%;
+    left:-100%;
+    width:200%;
+    height:200%;
+    background: linear-gradient(45deg, transparent, #00f0ff55, transparent);
+    transform:rotate(45deg);
+    animation: glowMove 4s linear infinite;
+}
+
+@keyframes glowMove{
+    0%{transform:translateX(-100%) rotate(45deg);}
+    100%{transform:translateX(100%) rotate(45deg);}
+}
+
+/* Hover effect */
+.enter-box:hover{
+    background:#00f0ff;
+    color:black;
+    box-shadow:0 0 40px #00f0ff;
+    transform:scale(1.05);
+}
+
+/* Main content hidden */
+.main{
+    display:none;
+    text-align:center;
+    color:#00f0ff;
+    font-size:40px;
+    text-shadow:0 0 30px #00f0ff;
+    animation:fadeIn 1.5s forwards;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:scale(0.8);}
+    to{opacity:1; transform:scale(1);}
+}
+</style>
+</head>
+<body>
+
+<div class="putz">PUTZ</div>
+
+<div class="center" id="welcome">
+    <div class="enter-box" onclick="enterWeb()">
+        Masuk ke dalam web
+    </div>
+</div>
+
+<div class="center main" id="main">
+    SELAMAT DATANG DI WEB PUTZ 😈
+</div>
+
+<script>
+function enterWeb(){
+    document.getElementById("welcome").style.display="none";
+    document.getElementById("main").style.display="block";
+}
+
+/* Disable double tap zoom iOS */
+document.addEventListener('gesturestart', function (e) {
+    e.preventDefault();
+});
+</script>
+
+</body>
+</html>
