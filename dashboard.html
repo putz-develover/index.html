@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PUTZ DASHBOARD</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    color:white;
+    text-align:center;
+    overflow:hidden;
+    font-family:Arial,sans-serif;
+}
+
+/* VIDEO BACKGROUND */
+#bg-video{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-1;
+    display:none;
+}
+
+/* WELCOME TEXT */
+#welcome{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:40px;
+    opacity:1;
+    transition:opacity 1s ease;
+    animation:glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px red, 0 0 20px red; }
+    to{ text-shadow:0 0 20px red, 0 0 40px red; }
+}
+
+button{
+    position:absolute;
+    bottom:40px;
+    left:50%;
+    transform:translateX(-50%);
+    padding:12px 25px;
+    border:none;
+    border-radius:8px;
+    background:red;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<video id="bg-video" autoplay loop playsinline>
+    <source src="ssstik.io_@yanxymasihpemula_1772602646635.mp4" type="video/mp4">
+</video>
+
+<h1 id="welcome">WELCOME DI WEB PUTZ 🔥</h1>
+<button onclick="logout()">Logout</button>
+
+<script>
+// CEK LOGIN
+if(localStorage.getItem("login") !== "true"){
+    window.location.href = "index.html";
+}
+
+const welcome = document.getElementById("welcome");
+const video = document.getElementById("bg-video");
+
+// 1 DETIK → HILANGKAN TEXT → TAMPILKAN VIDEO
+setTimeout(() => {
+    welcome.style.opacity = "0";
+
+    setTimeout(() => {
+        welcome.style.display = "none";
+        video.style.display = "block";
+        video.play().catch(()=>{});
+    }, 1000);
+
+}, 1000);
+
+function logout(){
+    localStorage.removeItem("login");
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
