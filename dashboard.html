@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>PUTZ DASHBOARD</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    overflow:hidden;
+    font-family:Arial,sans-serif;
+    color:white;
+    text-align:center;
+}
+
+/* VIDEO BACKGROUND HD */
+#bg-video{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    object-fit:cover;
+    z-index:-1;
+    transform:translateZ(0);
+    backface-visibility:hidden;
+    filter:brightness(1.05) contrast(1.05);
+}
+
+/* OVERLAY */
+#overlay{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:24px;
+    cursor:pointer;
+    z-index:10;
+}
+
+/* WELCOME */
+#welcome{
+    position:fixed;
+    top:40px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:36px;
+    animation:glowMove 0.6s infinite alternate;
+    transition:opacity 0.5s ease;
+}
+
+@keyframes glowMove{
+    0%{ text-shadow:0 0 10px red,0 0 20px orange; }
+    100%{ text-shadow:0 0 20px cyan,0 0 40px blue; }
+}
+
+/* TOMBOL KEMBALI */
+#backBtn{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:14px;
+    padding:6px 15px;
+    background:rgba(255,255,255,0.15);
+    border:1px solid rgba(255,255,255,0.4);
+    border-radius:20px;
+    color:white;
+    cursor:pointer;
+    backdrop-filter:blur(5px);
+}
+</style>
+</head>
+<body>
+
+<div id="overlay">Klik Disini Untuk Memulai</div>
+
+<video id="bg-video" playsinline preload="auto">
+    <source src="ssstik.io_1772664105001.mp4" type="video/mp4">
+</video>
+
+<h1 id="welcome">WELCOME DI WEB PUTZ 🔥</h1>
+<button id="backBtn" onclick="kembali()">Kembali</button>
+
+<script>
+if(localStorage.getItem("login") !== "true"){
+    window.location.href = "index.html";
+}
+
+const overlay = document.getElementById("overlay");
+const video = document.getElementById("bg-video");
+const welcome = document.getElementById("welcome");
+
+let videoList = [
+    "ssstik.io_1772664105001.mp4",
+    "ssstik.io_1772665310702.mp4",
+    "ssstik.io_1772666396673.mp4"
+];
+
+let currentIndex = 0;
+
+overlay.addEventListener("click", () => {
+    overlay.style.display = "none";
+    video.play().catch(()=>{});
+
+    setTimeout(()=>{
+        welcome.style.opacity = "0";
+    },1000);
+});
+
+/* GANTI VIDEO TANPA DELAY */
+video.addEventListener("ended", () => {
+    currentIndex++;
+
+    if(currentIndex < videoList.length){
+        video.src = videoList[currentIndex];
+        video.play().catch(()=>{});
+    } else {
+        video.loop = true; // video terakhir loop
+        video.play().catch(()=>{});
+    }
+});
+
+function kembali(){
+    localStorage.removeItem("login");
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
