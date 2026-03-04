@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>PUTZ Official</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Courier New', monospace;
+}
+
+html,body{
+    height:100%;
+    overflow:hidden;
+}
+
+/* VIDEO FULLSCREEN */
+video{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-2;
+}
+
+/* Overlay */
+.overlay{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.3);
+    z-index:-1;
+}
+
+/* PUTZ */
+.putz{
+    position:absolute;
+    top:20px;
+    right:30px;
+    font-size:22px;
+    color:#00f0ff;
+    text-shadow:0 0 10px #00f0ff;
+}
+
+/* Center */
+.center{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+/* Login box */
+.login-box{
+    padding:25px 30px;
+    border:2px solid red;
+    box-shadow:0 0 15px red;
+    background:rgba(0,0,0,0.4);
+}
+
+/* Input */
+.login-box input{
+    width:200px;
+    padding:8px;
+    margin:8px 0;
+    background:transparent;
+    border:1px solid red;
+    color:red;
+    text-align:center;
+    font-size:14px;
+}
+
+/* Tombol */
+.login-btn{
+    width:100%;
+    height:38px;
+    margin-top:8px;
+    border:1.5px solid red;
+    background:none;
+    color:red;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.login-btn:hover{
+    background:red;
+    color:black;
+    box-shadow:0 0 15px red;
+}
+
+/* Main */
+.main{
+    display:none;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:#00f0ff;
+    font-size:34px;
+    text-shadow:0 0 20px #00f0ff;
+}
+</style>
+</head>
+<body>
+
+<!-- AUTOPLAY VIDEO -->
+<video id="bgVideo" autoplay muted loop playsinline>
+    <source src="ssstik.io_@rayy_senpai03_1772589528928.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="putz">PUTZ</div>
+
+<div class="center" id="login">
+    <div class="login-box">
+        <input type="text" placeholder="Username"><br>
+        <input type="password" placeholder="Password"><br>
+        <button class="login-btn" onclick="login()">LOGIN</button>
+    </div>
+</div>
+
+<div class="main" id="main">
+    SELAMAT DATANG DI WEB PUTZ 😈
+</div>
+
+<script>
+const video = document.getElementById("bgVideo");
+
+/* Aktifkan suara saat pertama kali layar disentuh */
+document.addEventListener("click", function(){
+    video.muted = false;
+    video.play();
+}, { once:true });
+
+function login(){
+    document.getElementById("login").style.display="none";
+    document.getElementById("main").style.display="block";
+}
+
+/* Lock zoom iOS */
+document.addEventListener('gesturestart', function (e) {
+    e.preventDefault();
+});
+</script>
+
+</body>
+</html>
