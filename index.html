@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>PUTZ WEB</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+html,body{
+    height:100%;
+    overflow:hidden;
+    background:black;
+}
+
+/* VIDEO BACKGROUND */
+#bgVideo{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    object-fit:cover;
+    z-index:-1;
+    opacity:0;
+    transition:opacity 1.5s ease;
+}
+
+/* OVERLAY AWAL */
+.overlay{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    transition:opacity 1s ease;
+    z-index:5;
+}
+
+.overlay h1{
+    color:white;
+    font-size:26px;
+    letter-spacing:3px;
+    animation:glow 1.5s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px #fff; }
+    to{ text-shadow:0 0 25px #00f2ff; }
+}
+
+/* LOGIN GLASS */
+.login-box{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:320px;
+    padding:30px;
+    border-radius:15px;
+    backdrop-filter:blur(15px);
+    background:rgba(255,255,255,0.08);
+    box-shadow:0 0 40px rgba(0,0,0,0.6);
+    text-align:center;
+    display:none;
+    z-index:10;
+}
+
+.login-box h2{
+    color:white;
+    margin-bottom:20px;
+}
+
+.login-box input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:none;
+    border-radius:8px;
+    outline:none;
+}
+
+.login-box button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#00f2ff;
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.login-box button:hover{
+    background:white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- VIDEO -->
+<video id="bgVideo" loop playsinline>
+    <source src="ssstik.io_@rayy_senpai03_1772589528928.mp4" type="video/mp4">
+</video>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay">
+    <h1>TEKAN UNTUK MASUK</h1>
+</div>
+
+<!-- LOGIN -->
+<div class="login-box" id="loginBox">
+    <h2>LOGIN</h2>
+    <input type="text" placeholder="Username">
+    <input type="password" placeholder="Password">
+    <button>Masuk</button>
+</div>
+
+<script>
+const overlay = document.getElementById("overlay");
+const video = document.getElementById("bgVideo");
+const loginBox = document.getElementById("loginBox");
+
+overlay.addEventListener("click", () => {
+
+    // Play video + audio
+    video.play();
+
+    // Munculin video
+    video.style.opacity = "1";
+
+    // Hilangin overlay
+    overlay.style.opacity = "0";
+
+    setTimeout(()=>{
+        overlay.style.display="none";
+        loginBox.style.display="block";
+    },1000);
+
+});
+</script>
+
+</body>
+</html>
